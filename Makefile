@@ -1,5 +1,5 @@
-pkgname=arch-update
-_pkgname=Arch-Update
+pkgname=unios-update
+_pkgname=UniOS-Update
 locales = be bg ca de es eu fr hu it ja ka nb nl pt_BR pt_PT ru sv tr zh_CN zh_TW
 
 PREFIX ?= /usr/local

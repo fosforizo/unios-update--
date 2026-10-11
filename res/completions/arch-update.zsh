@@ -11,7 +11,7 @@ opts=(
     --gen-config'[Generate a default / example configuration file]'
     --show-config'[Display the current configuration file]'
     --edit-config'[Edit the current configuration file]'
-    --tray'[Launch the Arch-Update systray applet]'
+    --tray'[Launch the UniOS-Update systray applet]'
     {-h,--help}'[Display the help message]'
     {-V,--version}'[Display version information]'
 )
