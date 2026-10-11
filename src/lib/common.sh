@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# common.sh: Set variables, functions and parameters commonly used across the various Arch-Update stages
+# common.sh: Set variables, functions and parameters commonly used across the various UniOS-Update stages
 # https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 

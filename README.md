@@ -1,4 +1,4 @@
-# Arch-Update
+# UniOS-Update
 
 <p align="center">
   <img width="460" height="300" src="https://github.com/user-attachments/assets/5782bd11-084a-4ca3-b599-1c322ee11b84">
@@ -17,10 +17,11 @@
 
 ## Description
 
-An interactive update notifier & applier for Arch Linux that assists you with important pre / post update tasks.  
+An interactive update notifier & applier for UniOS Linux that assists you with important pre / post update tasks. 
 Includes a systray applet for an easy integration with any desktop / graphical environment.
+You will see a lot of referals to Arch Linux because UniOS is a respin. This notifier is the one Arch Linux uses with stylistic changes to fit our operating system.
 
-Arch-Update is designed to follow usual system maintenance steps, as [described in the Arch Wiki](https://wiki.archlinux.org/title/System_maintenance).
+UniOS-Update is designed to follow usual system maintenance steps, as [described in the Arch Wiki](https://wiki.archlinux.org/title/System_maintenance).
 
 Features:
 
@@ -43,16 +44,6 @@ Optional support for:
 
 ## Installation
 
-### AUR
-
-Install the [arch-update](https://aur.archlinux.org/packages/arch-update "arch-update AUR package") AUR package (also check the list of optional dependencies for anything you may want or need).
-
-Alternative AUR package variants:
-
-- [arch-update-bin](https://aur.archlinux.org/packages/arch-update-bin): Arch-Update package including a pre-compiled binary for the systray applet, avoiding the need to compile it locally (only available for the `x86_64` architecture). The pre-compiled binary is distributed as a [release asset](https://github.com/Antiz96/arch-update/releases/latest) (`arch-update-tray-<release_version>-x86_64`) and can be reproduced from source (in the sense of [reproducible builds](https://reproducible-builds.org/)). See [this chapter](#reproduce-the-pre-compiled-tray-binary-from-source) for related instructions.
-- [arch-update-git](https://aur.archlinux.org/packages/arch-update-git): Unstable version of Arch-Update, built against the latest commit from the main branch. This is mostly used for development and testing purposes, it is not recommended for regular usage.
-- [arch-update-cli](https://aur.archlinux.org/packages/arch-update-cli): Arch-Update package not including elements related to graphical usage (such as the systray applet, icons, desktop files, etc...). This stripped down version is useful for people that are only using Arch-Update from the CLI (for instance on headless machines / servers), without any use for the other components.
-
 ### From Source
 
 Install required runtime dependencies:
@@ -63,9 +54,6 @@ sudo pacman -S --needed bash systemd pacman pacman-contrib archlinux-contrib gli
 
 Additional optional dependencies you might want or need:
 
-- [paru](https://aur.archlinux.org/packages/paru): AUR Packages support
-- [yay](https://aur.archlinux.org/packages/yay): AUR Packages support
-- [pikaur](https://aur.archlinux.org/packages/pikaur): AUR Packages support
 - [flatpak](https://archlinux.org/packages/extra/x86_64/flatpak/): Flatpak Packages support
 - [libnotify](https://archlinux.org/packages/extra/x86_64/libnotify/): Desktop notifications support on new available updates (see <https://wiki.archlinux.org/title/Desktop_notifications>)
 - [alhp-utils](https://aur.archlinux.org/packages/alhp-utils): Check for ALHP build queue or outdated mirrors
@@ -83,7 +71,7 @@ sudo pacman -S --asdeps make scdoc bats cargo pkgconf
 
 Download the archive of the [latest stable release](https://github.com/Antiz96/arch-update/releases/latest) and extract it (alternatively, you can clone this repository with `git`).
 
-To build and install `arch-update`, go into the extracted / cloned directory and run the following commands:
+To build and install `unios-update`, go into the extracted / cloned directory and run the following commands:
 
 ```bash
 make # You can optionally pass the `WITH_TRAY=false` argument to not build the systray applet
@@ -97,7 +85,7 @@ Once the installation is complete, you may optionally clean up the directory of 
 make clean
 ```
 
-To uninstall `arch-update`, go into the extracted / cloned directory and run the following command:
+To uninstall `unios-update`, go into the extracted / cloned directory and run the following command:
 
 ```bash
 sudo make uninstall
@@ -106,14 +94,14 @@ sudo make uninstall
 ## Usage
 
 For desktop machines, the usage consist of starting [the systray applet](#the-systray-applet) and enabling [the automated update checks](#the-automated-update-checks).  
-For headless machines, `Arch-Update` includes an extensive CLI.
+For headless machines, `UniOS-Update` includes an extensive CLI.
 
 ### The systray applet
 
 To start the systray applet and enable it automatically at boot, run the following command (preferred method for most environments, uses [XDG Autostart](https://wiki.archlinux.org/title/XDG_Autostart)):
 
 ```bash
-arch-update --tray --enable
+unios-update --tray --enable
 ```
 
 In case your graphical environment doesn't support XDG Autostart, add the following command your environment auto-start method instead:
@@ -121,11 +109,11 @@ In case your graphical environment doesn't support XDG Autostart, add the follow
 *Note that the small startup delay in the form of the `sleep 3` command may not always be required but acts as a useful trick to avoid eventual [race condition](https://en.wikipedia.org/wiki/Race_condition) issues which may lead to the systray applet unexpectedly not starting at boot. I therefore recommend its usage as a safety measure (this small delay is already applied by default with the XDG Autostart / `arch-update --tray --enable` method).*
 
 ```bash
-sleep 3 && arch-update --tray
+sleep 3 && unios-update --tray
 ```
 
-The systray icon dynamically changes to indicate the current state of your system ('up to date' or 'updates available'). When clicked, it launches `arch-update` in a terminal window via the [arch-update.desktop](https://github.com/Antiz96/arch-update/blob/main/res/desktop/arch-update.desktop) file.  
-The systray applet menu shows further information (like the list of pending updates, time of the last and next checks, ...) and allows to trigger specific actions (like running Arch-Update, check for updates, ...). See [screenshots](#screenshots) for more details.
+The systray icon dynamically changes to indicate the current state of your system ('up to date' or 'updates available'). When clicked, it launches `unios-update` in a terminal window via the [unios-update.desktop](https://github.com/Antiz96/arch-update/blob/main/res/desktop/arch-update.desktop) file.  
+The systray applet menu shows further information (like the list of pending updates, time of the last and next checks, ...) and allows to trigger specific actions (like running UniOS-Update, check for updates, ...). See [screenshots](#screenshots) for more details.
 
 **Notes:**
 
@@ -137,7 +125,7 @@ The systray applet menu shows further information (like the list of pending upda
 To enable automated and periodic checks for available updates, run the following command:
 
 ```bash
-arch-update --check --enable
+unios-update --check --enable
 ```
 
 By default, a check is performed **at boot and then once every 6 hours**. The check cycle can be customized, see [this chapter](#modify-the-check-cycle).
@@ -145,50 +133,28 @@ By default, a check is performed **at boot and then once every 6 hours**. The ch
 ### Screenshots
 
 Once started, the systray applet appears in the systray area of your panel.  
-It is the first icon on the left in the screenshot below (note that there are [different color variants available](https://github.com/Antiz96/arch-update/blob/main/res/icons/README.md) for it):
+It is the third icon on the left in the screenshot below:
 
-![icon](https://github.com/user-attachments/assets/ec5f4ab7-7eb0-4c41-8b2b-9983e789d516)
+![icon](/res/screenshots/tray-icon.png)
 
-With [the automated update checks](#the-automated-update-checks) enabled, checks for updates are automatically and periodically performed, but you can manually trigger one from the systray applet icon by right-clicking it and then clicking on the `Check for updates` menu entry. You can also see timestamps report for the last and next update checks:
 
-![check_for_updates](https://github.com/user-attachments/assets/4b73946d-f9f5-4be6-87b8-42112fca642d)
+On hover if there are new available updates, the systray icon shows a notification indicating the number of available updates. You can click on it and run UniOS-Update:
 
-If there are new available updates, the systray icon shows a red circle and a desktop notification indicating the number of available updates is sent. You can directly run Arch-Update from it or close / dismiss it thanks to the related click actions:
+![notif](/res/screenshots/updates-available.png)
 
-![notif](https://github.com/user-attachments/assets/d96b1831-fc11-4343-9f81-eee2a906961b)
+When the systray icon is left-clicked, `unios-update` is run in a terminal window (alternatively, you can click the "*X* update(s) available" entry or the dedicated "Run UniOS-Update" one from the right-click menu):
 
-You can see the list of available updates from the menu by right-clicking the systray icon.  
-A dropdown menu displaying the number and the list of pending updates is dynamically created for each sources that have some (Packages, AUR, Flatpak).  
-A "All" dropdown menu gathering the number and the list of pending updates for all sources is dynamically created if at least 2 different sources have pending updates:
+![run](/res/screenshots/update-window.png)
 
-*Clicking on the entry for a package opens the upstream project's URL in your web browser (except for Flatpak packages).*
+From there, just let `UniOS-Update` guide you through the various steps required for a complete and proper update of your system! :smile:
 
-![all](https://github.com/user-attachments/assets/f1a6a6de-ac06-4234-a0a8-e5dd326bb5a0)
-
-![packages](https://github.com/user-attachments/assets/f94dfe9f-95b1-46fc-a5fe-fbc8adc704ad)
-
-![aur](https://github.com/user-attachments/assets/cf9cd829-fc97-4a05-9a6a-f5cba1649e29)
-
-When the systray icon is left-clicked, `arch-update` is run in a terminal window (alternatively, you can click the "*X* update(s) available" entry or the dedicated "Run Arch-Update" one from the right-click menu):
-
-![run](https://github.com/user-attachments/assets/874e4f9e-4498-41bf-b257-1e5ecb782377)
-
-If at least one Arch Linux news has been published since the last run, `Arch-Update` will offer you to read the latest Arch Linux news directly from the terminal window.  
-The news published since the last run are tagged as `[NEW]`:
-
-![news](https://github.com/user-attachments/assets/42472294-ce87-4d86-87fc-3adb0f6f3e9e)
-
-If no news has been published since the last run, `Arch-Update` directly asks for your confirmation to proceed with update.
-
-From there, just let `Arch-Update` guide you through the various steps required for a complete and proper update of your system! :smile:
-
-Certain options can be enabled, disabled or modified via the `arch-update.conf` configuration file. See the [arch-update.conf(5) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.conf.5.scd) for more details.
+Certain options can be enabled, disabled or modified via the `unios-update.conf` configuration file. See the [arch-update.conf(5) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.conf.5.scd) for more details.
 
 ## Documentation
 
-### arch-update
+### unios-update
 
-See `arch-update --help` and the [arch-update(1) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.1.scd).
+See `unios-update --help` and the [arch-update(1) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.1.scd).
 
 ### arch-update configuration file
 
@@ -200,8 +166,8 @@ See the [arch-update.conf(5) man page](https://raw.githubusercontent.com/Antiz96
 
 If you enabled [the automated update checks](#the-automated-update-checks), a check for available updates is automatically launched at boot and then once each 6 hours.
 
-If you want to customize the check cycle, run `systemctl --user edit --full arch-update.timer` and modify the `OnUnitActiveSec` value to your liking.  
-For instance, if you want `Arch-Update` to check for new updates every 4 hours instead:
+If you want to customize the check cycle, run `systemctl --user edit --full unios-update.timer` and modify the `OnUnitActiveSec` value to your liking.  
+For instance, if you want `UninOS-Update` to check for new updates every 4 hours instead:
 
 ```text
 [...]
@@ -214,12 +180,12 @@ OnUnitActiveSec=4h
 Time units are `s` for seconds, `m` for minutes, `h` for hours, `d` for days...  
 See <https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html#Parsing%20Time%20Spans> for more details.
 
-In case you want `Arch-Update` to check for new updates only once at boot, you can simply delete the `OnUnitActiveSec` line completely.
+In case you want `UniOS-Update` to check for new updates only once at boot, you can simply delete the `OnUnitActiveSec` line completely.
 
-### Run Arch-Update in a specific terminal emulator
+### Run UniOS-Update in a specific terminal emulator
 
-`gio` (used to launch the `arch-update` terminal application via the `arch-update.desktop` file when the systray applet is clicked) currently has a default limited list of known terminal emulators.  
-As such, if you don't have any of these "known" terminal emulators installed on your system, you might face an issue where clicking the systray applet does nothing (as `gio` couldn't find a terminal emulator from the said list). Incidentally, you might have multiple terminal emulators installed on your system and you may want to force Arch-Update to use a specific one. In both cases, you can specify which terminal emulator to use.
+`gio` (used to launch the `unios-update` terminal application via the `unios-update.desktop` file when the systray applet is clicked) currently has a default limited list of known terminal emulators.  
+As such, if you don't have any of these "known" terminal emulators installed on your system, you might face an issue where clicking the systray applet does nothing (as `gio` couldn't find a terminal emulator from the said list). Incidentally, you might have multiple terminal emulators installed on your system and you may want to force UniOS-Update to use a specific one. In both cases, you can specify which terminal emulator to use.
 
 To do so, install the [xdg-terminal-exec package](https://archlinux.org/packages/?name=xdg-terminal-exec), create the `~/.config/xdg-terminals.list` file and add the name of the `.desktop` file of your terminal emulator of choice in it (e.g. `Alacritty.desktop`).  
 See <https://github.com/Vladimir-csp/xdg-terminal-exec?tab=readme-ov-file#configuration> for more details.
@@ -251,4 +217,4 @@ See the [contributing guidelines](https://github.com/Antiz96/arch-update/blob/ma
 
 ## License
 
-Arch-Update is licensed under the [GPL-3.0 license](https://github.com/Antiz96/arch-update/blob/main/LICENSE) (or any later version of that license).
+UniOs-Update is licensed under the [GPL-3.0 license](https://github.com/Antiz96/arch-update/blob/main/LICENSE) (or any later version of that license).

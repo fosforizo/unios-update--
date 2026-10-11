@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# arch-update: An interactive update notifier & applier for Arch Linux that assists you with important pre / post update tasks
-# https://github.com/Antiz96/arch-update
+# unios-update: An interactive update notifier & applier for the Arch Linux derivative, unios that assists you with important pre / post update tasks
+# https://github.com/open-source-uom/unios-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # General variables
 name="unios-update"
-_name="unios-update"
-version="4.4.2"
+_name="UniOS-update"
+version="2.0"
 option="${1}"
 
 # Define the directory containing libraries

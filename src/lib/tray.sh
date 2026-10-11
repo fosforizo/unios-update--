@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# tray.sh: Start the Arch-Update systray applet
+# tray.sh: Start the UniOS-Update systray applet
 # https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 

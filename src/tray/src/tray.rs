@@ -64,13 +64,13 @@ impl ksni::Tray for ArchUpdateTray {
 
     // Set title
     fn title(&self) -> String {
-        self.id()
+        "UniOS Update".into()
     }
 
     // Set tooltip
     fn tool_tip(&self) -> ksni::ToolTip {
         ksni::ToolTip {
-            title: self.id(),
+            title: "UniOS Update".into(),
             description: match tray_helpers::get_updates_count(&self.updates_statefile_type.all) {
                 0 => gettext("System is up to date"),
                 1 => gettext("1 update available"),
@@ -221,7 +221,7 @@ impl ksni::Tray for ArchUpdateTray {
                 .into(),
             );
         } else {
-            warn!("Failed to determine the last Arch-Update check time");
+            warn!("Failed to determine the last UniOS-Update check time");
         }
 
         // Add the "Next Check" menu entry (if the systemd timer is started / enabled)
@@ -238,7 +238,7 @@ impl ksni::Tray for ArchUpdateTray {
                 .into(),
             );
         } else {
-            warn!("Failed to determine next Arch-Update check time");
+            warn!("Failed to determine next UniOS-Update check time");
         }
 
         // Add a menu group containing a separator and the "Run Arch-Update", "Check for updates" & "Exit" buttons
@@ -247,7 +247,7 @@ impl ksni::Tray for ArchUpdateTray {
         menu.extend([
             MenuItem::Separator,
             StandardItem {
-                label: gettext("Run Arch-Update"),
+                label: gettext("Run UniOS-Update"),
                 activate: Box::new(move |_| {
                     tray_helpers::launch_arch_update(&desktop_file);
                 }),
@@ -258,8 +258,8 @@ impl ksni::Tray for ArchUpdateTray {
                 label: gettext("Check for updates"),
                 activate: Box::new(
                     |_| match Command::new("unios-update").arg("--check").spawn() {
-                        Ok(_) => info!("Arch-Update check executed"),
-                        Err(error) => error!("Failed to execute Arch-Update check: {error}"),
+                        Ok(_) => info!("UniOS-Update check executed"),
+                        Err(error) => error!("Failed to execute UniOS-Update check: {error}"),
                     },
                 ),
                 ..Default::default()
