@@ -1,9 +1,5 @@
 # UniOS-Update
 
-<p align="center">
-  <img width="460" height="300" src="https://github.com/user-attachments/assets/5782bd11-084a-4ca3-b599-1c322ee11b84">
-</p>
-
 ## Table of contents
 
 - [Description](#description)
@@ -17,7 +13,7 @@
 
 ## Description
 
-An interactive update notifier & applier for UniOS Linux that assists you with important pre / post update tasks. 
+An interactive update notifier & applier for UniOS that assists you with important pre / post update tasks. 
 Includes a systray applet for an easy integration with any desktop / graphical environment.
 You will see a lot of referals to Arch Linux because UniOS is a respin. This notifier is the one Arch Linux uses with stylistic changes to fit our operating system.
 
@@ -37,7 +33,6 @@ Features:
 
 Optional support for:
 
-- AUR packages (via `paru`, `yay` or `pikaur`).
 - Flatpak packages (via `flatpak`).
 - Desktop notifications (via `libnotify`).
 - Check for ALHP build queue or outdated mirrors (via `alhp-utils`).
@@ -106,7 +101,7 @@ unios-update --tray --enable
 
 In case your graphical environment doesn't support XDG Autostart, add the following command your environment auto-start method instead:
 
-*Note that the small startup delay in the form of the `sleep 3` command may not always be required but acts as a useful trick to avoid eventual [race condition](https://en.wikipedia.org/wiki/Race_condition) issues which may lead to the systray applet unexpectedly not starting at boot. I therefore recommend its usage as a safety measure (this small delay is already applied by default with the XDG Autostart / `arch-update --tray --enable` method).*
+*Note that the small startup delay in the form of the `sleep 3` command may not always be required but acts as a useful trick to avoid eventual [race condition](https://en.wikipedia.org/wiki/Race_condition) issues which may lead to the systray applet unexpectedly not starting at boot. I therefore recommend its usage as a safety measure (this small delay is already applied by default with the XDG Autostart / `unios-update --tray --enable` method).*
 
 ```bash
 sleep 3 && unios-update --tray
@@ -117,7 +112,6 @@ The systray applet menu shows further information (like the list of pending upda
 
 **Notes:**
 
-- If clicking the systray applet does nothing, please read [this chapter](#run-arch-update-in-a-specific-terminal-emulator).
 - GNOME shell does not support systray icons natively, GNOME users need to install the ["AppIndicator and KStatusNotifierItem Support" extension](https://extensions.gnome.org/extension/615/appindicator-support/) for the systray applet to work.
 
 ### The automated update checks
@@ -142,7 +136,7 @@ On hover if there are new available updates, the systray icon shows a notificati
 
 ![notif](/res/screenshots/updates-available.png)
 
-When the systray icon is left-clicked, `unios-update` is run in a terminal window (alternatively, you can click the "*X* update(s) available" entry or the dedicated "Run UniOS-Update" one from the right-click menu):
+When the systray icon is left-clicked, `unios-update` is run in a terminal window
 
 ![run](/res/screenshots/update-window.png)
 
@@ -182,38 +176,9 @@ See <https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html#P
 
 In case you want `UniOS-Update` to check for new updates only once at boot, you can simply delete the `OnUnitActiveSec` line completely.
 
-### Run UniOS-Update in a specific terminal emulator
-
-`gio` (used to launch the `unios-update` terminal application via the `unios-update.desktop` file when the systray applet is clicked) currently has a default limited list of known terminal emulators.  
-As such, if you don't have any of these "known" terminal emulators installed on your system, you might face an issue where clicking the systray applet does nothing (as `gio` couldn't find a terminal emulator from the said list). Incidentally, you might have multiple terminal emulators installed on your system and you may want to force UniOS-Update to use a specific one. In both cases, you can specify which terminal emulator to use.
-
-To do so, install the [xdg-terminal-exec package](https://archlinux.org/packages/?name=xdg-terminal-exec), create the `~/.config/xdg-terminals.list` file and add the name of the `.desktop` file of your terminal emulator of choice in it (e.g. `Alacritty.desktop`).  
-See <https://github.com/Vladimir-csp/xdg-terminal-exec?tab=readme-ov-file#configuration> for more details.
-
-## Reproduce the pre-compiled tray binary from source
-
-A pre-compiled binary of the systray applet for the `x86_64 (amd64)` architecture is distributed as a [release asset](https://github.com/Antiz96/arch-update/releases/latest) (`arch-update-tray-<release_version>-x86_64`).  
-
-The pre-compiled binary can be reproduced from source (in the sense of [reproducible builds](https://reproducible-builds.org)).  
-The build environment is created and fully documented via [repro-env](https://github.com/kpcyrd/repro-env), and is tracked in this repository.
-
-To reproduce the pre-compiled binary for a given release, [install repro-env](https://github.com/kpcyrd/repro-env#download) and run the following:
-
-```bash
-git clone https://github.com/Antiz96/arch-update.git
-cd arch-update
-git checkout <tag> # Where <tag> is the git tag for the targeted release, e.g. "v4.4.0"
-repro-env build -- cargo build --release
-sha256sum src/tray/target/release/arch-update-tray
-```
-
-Then, compare the `sha256` hash of the built binary to the one of the pre-compiled release binary (which is also recorded in the `arch-update-tray-<release_version>-x86_64.sha256` file in the release assets). Both hashes should be equal, indicating that the binary has been successfully reproduced.
-
-Each release assets are also cryptographically signed, with the detached signature for each asset distributed as `<asset_name>.asc` (see the [MAINTAINERS.md file](https://github.com/Antiz96/arch-update/blob/main/MAINTAINERS.md) for a list of keys expected to emit signatures).
-
 ## Contributing
 
-See the [contributing guidelines](https://github.com/Antiz96/arch-update/blob/main/CONTRIBUTING.md).
+You can contribute [here](https://github.com/open-source-uom/unios-update). We recomend following the [contributing guidelines](https://github.com/Antiz96/arch-update/blob/main/CONTRIBUTING.md) of Arch Linux.
 
 ## License
 
