@@ -34,8 +34,8 @@ if [ "${2}" == "--enable" ]; then
 fi
 
 # shellcheck disable=SC2154
-if [ -n "${ARCH_UPDATE_TRAY_BIN}" ]; then
-        tray_bin="${ARCH_UPDATE_TRAY_BIN}"
+if [ -n "${UNIOS_UPDATE_TRAY_BIN}" ]; then
+        tray_bin="${Unios_UPDATE_TRAY_BIN}"
 elif [ -f "${HOME}/.local/lib/${name}/${name}-tray" ]; then
         tray_bin="${HOME}/.local/lib/${name}/${name}-tray"
 elif [ -f "/usr/local/lib/${name}/${name}-tray" ]; then
@@ -66,6 +66,6 @@ fi
 info_msg "$(eval_gettext "Starting the \${_name} systray applet")"
 
 # shellcheck disable=SC2154
-ARCH_UPDATE_TRAY_UPDATES_PER_PAGE="${tray_updates_per_page}" \
-ARCH_UPDATE_SHOW_TRAY_WHEN_RELEVANT="${show_tray_when_relevant}" \
+UNIOS_UPDATE_TRAY_UPDATES_PER_PAGE="${tray_updates_per_page}" \
+UNIOS_UPDATE_SHOW_TRAY_WHEN_RELEVANT="${show_tray_when_relevant}" \
 setsid "${tray_bin}" &

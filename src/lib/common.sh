@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # common.sh: Set variables, functions and parameters commonly used across the various UniOS-Update stages
-# https://github.com/Antiz96/arch-update
+# https://github.com/open-source-uom/unios-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Display debug traces if the -D / --debug argument is passed
@@ -114,7 +114,7 @@ quit_msg() {
 	read -n 1 -r -s -p $"$(info_msg "${msg}")" && echo
 }
 
-# Definition of the AUR helper to use (depending on if / which one is installed on the system and if it's not already defined in arch-update.conf) for the optional AUR packages support
+# Definition of the AUR helper to use (depending on if / which one is installed on the system and if it's not already defined in unios-update.conf) for the optional AUR packages support
 check_aur_helper() {
 	if [ -z "${no_aur}" ]; then
 		# shellcheck disable=SC2034
@@ -160,7 +160,7 @@ if [ -z "${no_alhp_check}" ]; then
 	alhp_support=$(command -v alhp.utils)
 fi
 
-# Definition of the elevation command to use (depending on which one is installed on the system and if it's not already defined in arch-update.conf)
+# Definition of the elevation command to use (depending on which one is installed on the system and if it's not already defined in unios-update.conf)
 check_su_cmd () {
 	if [ -z "${su_cmd}" ]; then
 		if command -v sudo > /dev/null; then
@@ -183,7 +183,7 @@ check_su_cmd () {
 	fi
 }
 
-# Definition of the diff program to use (if it is set in the arch-update.conf configuration file)
+# Definition of the diff program to use (if it is set in the unios-update.conf configuration file)
 check_diff_prog () {
 	[ -n "${DIFFPROG}" ] && diff_prog="${DIFFPROG}"
 

@@ -17,14 +17,14 @@ use std::process::{self, Command};
 use crate::tray_helpers;
 use crate::updates_statefiles;
 
-pub struct ArchUpdateTray {
+pub struct UniOSUpdateTray {
     icon_statefile: PathBuf,
     updates_statefile_type: updates_statefiles::UpdatesStateFiles,
     desktop_file: PathBuf,
 }
 
 // Systray Applet implementation
-impl ksni::Tray for ArchUpdateTray {
+impl ksni::Tray for UniOSUpdateTray {
     // Set id
     fn id(&self) -> String {
         "unios-update".into()
@@ -37,7 +37,7 @@ impl ksni::Tray for ArchUpdateTray {
 
     // Set status
     fn status(&self) -> ksni::Status {
-        if env::var("ARCH_UPDATE_SHOW_TRAY_WHEN_RELEVANT").is_ok_and(|value| value == "true") {
+        if env::var("UNIOS_UPDATE_SHOW_TRAY_WHEN_RELEVANT").is_ok_and(|value| value == "true") {
             match tray_helpers::get_updates_count(&self.updates_statefile_type.all) {
                 0 => ksni::Status::Passive,
                 _ => ksni::Status::Active,
@@ -82,9 +82,9 @@ impl ksni::Tray for ArchUpdateTray {
         }
     }
 
-    // Run Arch-Update via the desktop file when activated (left click)
+    // Run UniOS-Update via the desktop file when activated (left click)
     fn activate(&mut self, _x: i32, _y: i32) {
-        tray_helpers::launch_arch_update(&self.desktop_file);
+        tray_helpers::launch_unios_update(&self.desktop_file);
     }
 
     // Dynamically rebuild menu when opened (AboutToShow protocol)
@@ -131,7 +131,7 @@ impl ksni::Tray for ArchUpdateTray {
                     StandardItem {
                         label,
                         activate: Box::new(move |_| {
-                            tray_helpers::launch_arch_update(&desktop_file);
+                            tray_helpers::launch_unios_update(&desktop_file);
                         }),
                         ..Default::default()
                     }
@@ -241,7 +241,7 @@ impl ksni::Tray for ArchUpdateTray {
             warn!("Failed to determine next UniOS-Update check time");
         }
 
-        // Add a menu group containing a separator and the "Run Arch-Update", "Check for updates" & "Exit" buttons
+        // Add a menu group containing a separator and the "Run UniOS-Update", "Check for updates" & "Exit" buttons
         let desktop_file = self.desktop_file.clone();
 
         menu.extend([
@@ -249,7 +249,7 @@ impl ksni::Tray for ArchUpdateTray {
             StandardItem {
                 label: gettext("Run UniOS-Update"),
                 activate: Box::new(move |_| {
-                    tray_helpers::launch_arch_update(&desktop_file);
+                    tray_helpers::launch_unios_update(&desktop_file);
                 }),
                 ..Default::default()
             }
@@ -288,7 +288,7 @@ pub async fn run(
     // Clone icon statefile path variable (used by the watcher)
     let watcher_icon_statefile = icon_statefile.clone();
 
-    let tray = ArchUpdateTray {
+    let tray = UniOSUpdateTray {
         icon_statefile,
         updates_statefile_type,
         desktop_file,

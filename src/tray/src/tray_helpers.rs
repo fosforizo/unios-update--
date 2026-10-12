@@ -20,17 +20,17 @@ use tokio::sync::mpsc;
 
 use crate::tray;
 
-// Helper to run Arch-Update from the desktop file (via `gio`)
-pub fn launch_arch_update(desktop_file: &Path) {
+// Helper to run UniOS-Update from the desktop file (via `gio`)
+pub fn launch_unios_update(desktop_file: &Path) {
     let Some(app) = DesktopAppInfo::from_filename(desktop_file) else {
-        error!("Failed to load Arch-Update desktop file");
+        error!("Failed to load UniOS-Update desktop file");
         return;
     };
 
     if let Err(error) = app.launch(&[], None::<&gio::AppLaunchContext>) {
-        error!("Failed to launch Arch-Update: {error}");
+        error!("Failed to launch UniOS-Update: {error}");
     } else {
-        info!("Arch-Update launched");
+        info!("UniOS-Update launched");
     }
 }
 
@@ -52,7 +52,7 @@ pub fn count_update_types(updates_statefile: &Path) -> bool {
 // updates per pages for pagination
 pub fn build_updates_submenu(
     updates_statefile: &Path,
-) -> Vec<ksni::MenuItem<tray::ArchUpdateTray>> {
+) -> Vec<ksni::MenuItem<tray::UniOSUpdateTray>> {
     match fs::read_to_string(updates_statefile) {
         Ok(updates) => {
             let updates: Vec<_> = updates
@@ -60,7 +60,7 @@ pub fn build_updates_submenu(
                 .filter(|line| !line.trim().is_empty())
                 .collect();
 
-            let updates_per_page = env::var("ARCH_UPDATE_TRAY_UPDATES_PER_PAGE")
+            let updates_per_page = env::var("UNIOS_UPDATE_TRAY_UPDATES_PER_PAGE")
                 .ok()
                 .and_then(|value| value.parse::<usize>().ok())
                 .unwrap_or(0);
@@ -81,7 +81,7 @@ fn build_updates_submenu_pagination(
     updates: &[&str],
     page: usize,
     updates_per_page: usize,
-) -> Vec<ksni::MenuItem<tray::ArchUpdateTray>> {
+) -> Vec<ksni::MenuItem<tray::UniOSUpdateTray>> {
     let (start, end) = if updates_per_page == 0 {
         (0, updates.len())
     } else {
@@ -162,7 +162,7 @@ fn open_package_url(package: &str) {
 // icon change
 pub async fn icon_watcher(
     icon_statefile: PathBuf,
-    handle: Handle<crate::tray::ArchUpdateTray>,
+    handle: Handle<crate::tray::UniOSUpdateTray>,
 ) -> anyhow::Result<()> {
     let (tx, mut rx) = mpsc::unbounded_channel();
 
@@ -202,7 +202,7 @@ struct SystemdTimer {
 
 pub fn get_next_check() -> Option<String> {
     let systemctl_output = Command::new("systemctl")
-        .args(["--user", "list-timers", "arch-update.timer", "-o", "json"])
+        .args(["--user", "list-timers", "unios-update.timer", "-o", "json"])
         .output()
         .ok()?;
 

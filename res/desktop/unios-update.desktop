@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Arch-Update
+Name=UniOS-Update
 Comment=An interactive update notifier & applier for Arch Linux
 Comment[be]=Інтэрактыўны апавяшчальнік і ўсталёўшчык абнаўленняў для Arch Linux
 Comment[bg]=Интерактивен нотификатор и инструмент за актуализиране за Arch Linux
@@ -14,8 +14,8 @@ Comment[nb]=En interaktiv oppdateringsvarsler og -gjennomfører for Arch Linux
 Comment[ru]=Интерактивный помощник по обновлению Arch Linux: уведомляет об обновлениях и устанавливает их
 Comment[tr]=Arch Linux için etkileşimli bir güncelleme bildiricisi ve uygulayıcısı
 Comment[zh_CN]=Arch Linux 的交互式更新通知 & 应用工具
-Icon=arch-update-blue
+Icon=unios-success
 Type=Application
 Terminal=true
-Exec=arch-update
+Exec=unios-update
 Categories=Utility

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# show-config.sh: Display the current "arch-update.conf" configuration file
+# show-config.sh: Display the current "unios-update.conf" configuration file
 # https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 

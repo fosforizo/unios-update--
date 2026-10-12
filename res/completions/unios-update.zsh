@@ -1,4 +1,4 @@
-#compdef arch-update
+#compdef unios-update
 
 local -a opts
 opts=(
