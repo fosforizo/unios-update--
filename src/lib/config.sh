@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # config.sh: Check options set in the unios-update.conf configuration file
-# https://github.com/open-source-uom/unios-update
+# https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Define the path to the unios-update.conf configuration file

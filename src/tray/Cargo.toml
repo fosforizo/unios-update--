@@ -1,9 +1,9 @@
 [package]
-name = "arch-update-tray"
-version = "4.4.2"
-authors = ["Robin Candau <robincandau@mailbox.org>"]
+name = "unios-update-tray"
+version = "2.0"
+authors = ["Robin Candau <robincandau@mailbox.org>","fosforizo (UniOS addaptation)"]
 edition = "2024"
-description = "A systray applet for Arch-Update"
+description = "A systray applet for UniOS-Update"
 license = "GPL-3.0-or-later"
 
 [dependencies]
@@ -18,3 +18,7 @@ notify = "8.2.0"
 serde = "1.0.228"
 serde_json = "1.0.150"
 tokio = "1.52.3"
+
+[[bin]]
+name = "unios-update-tray"
+path = "src/main.rs"

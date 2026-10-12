@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # unios-update: An interactive update notifier & applier for the Arch Linux derivative, unios that assists you with important pre / post update tasks
-# https://github.com/open-source-uom/unios-update
+# https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # General variables

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # help.sh: Display the help message
-# https://github.com/open-source-uom/unios-update
+# https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 cat <<EOF

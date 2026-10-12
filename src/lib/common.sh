@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # common.sh: Set variables, functions and parameters commonly used across the various UniOS-Update stages
-# https://github.com/open-source-uom/unios-update
+# https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Display debug traces if the -D / --debug argument is passed

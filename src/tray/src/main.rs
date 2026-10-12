@@ -1,4 +1,4 @@
-//! arch-update-tray - A systray applet for UniOS-Update
+//! unios-update-tray - A systray applet for UniOS-Update
 //! https://github.com/Antiz96/arch-update
 //! SPDX-License-Identifier: GPL-3.0-or-later
 

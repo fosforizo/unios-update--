@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # check.sh: Check for available updates
-# https://github.com/open-source-uom/unios-update
+# https://github.com/Antiz96/arch-update
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # shellcheck disable=SC2154
