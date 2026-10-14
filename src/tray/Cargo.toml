@@ -1,6 +1,6 @@
 [package]
 name = "unios-update-tray"
-version = "2.0"
+version = "2.0.0"
 authors = ["Robin Candau <robincandau@mailbox.org>","fosforizo (UniOS addaptation)"]
 edition = "2024"
 description = "A systray applet for UniOS-Update"
