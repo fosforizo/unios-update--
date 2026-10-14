@@ -1,0 +1,16 @@
+[Unit]
+Description=UniOS-Update systray applet
+PartOf=graphical-session.target
+After=graphical-session.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Environment=UNIOS_UPDATE_TRAY_FOREGROUND=1
+ExecStartPre=/bin/sleep 3
+ExecStart=unios-update --tray
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target

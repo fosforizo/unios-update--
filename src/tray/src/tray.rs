@@ -241,7 +241,7 @@ impl ksni::Tray for UniOSUpdateTray {
             warn!("Failed to determine next UniOS-Update check time");
         }
 
-        // Add a menu group containing a separator and the "Run UniOS-Update", "Check for updates" & "Exit" buttons
+        // Add a menu group containing a separator and the "Run UniOS-Update" & "Check for updates" buttons
         let desktop_file = self.desktop_file.clone();
 
         menu.extend([
@@ -262,15 +262,6 @@ impl ksni::Tray for UniOSUpdateTray {
                         Err(error) => error!("Failed to execute UniOS-Update check: {error}"),
                     },
                 ),
-                ..Default::default()
-            }
-            .into(),
-            StandardItem {
-                label: gettext("Exit"),
-                activate: Box::new(|_| {
-                    info!("Exited on user request");
-                    process::exit(0);
-                }),
                 ..Default::default()
             }
             .into(),

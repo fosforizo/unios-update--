@@ -49,6 +49,7 @@ endif
 	# Install systemd units
 	install -Dm 644 "res/systemd/${pkgname}.service" "${DESTDIR}${PREFIX}/lib/systemd/user/${pkgname}.service"
 	install -Dm 644 "res/systemd/${pkgname}.timer" "${DESTDIR}${PREFIX}/lib/systemd/user/${pkgname}.timer"
+	install -Dm 644 "res/systemd/${pkgname}-tray.service" "${DESTDIR}${PREFIX}/lib/systemd/user/${pkgname}-tray.service"
 
 	# Install shell completions
 	install -Dm 644 "res/completions/${pkgname}.bash" "${DESTDIR}${PREFIX}/share/bash-completion/completions/${pkgname}"
@@ -106,6 +107,7 @@ uninstall:
 	# Delete systemd units
 	rm -f "${DESTDIR}${PREFIX}/lib/systemd/user/${pkgname}.service"
 	rm -f "${DESTDIR}${PREFIX}/lib/systemd/user/${pkgname}.timer"
+	rm -f "${DESTDIR}${PREFIX}/lib/systemd/user/${pkgname}-tray.service"
 
 	# Delete .mo files
 	for locale in $(locales); do \
