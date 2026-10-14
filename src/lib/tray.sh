@@ -35,7 +35,7 @@ fi
 
 # shellcheck disable=SC2154
 if [ -n "${UNIOS_UPDATE_TRAY_BIN}" ]; then
-        tray_bin="${Unios_UPDATE_TRAY_BIN}"
+        tray_bin="${UNIOS_UPDATE_TRAY_BIN}"
 elif [ -f "${HOME}/.local/lib/${name}/${name}-tray" ]; then
         tray_bin="${HOME}/.local/lib/${name}/${name}-tray"
 elif [ -f "/usr/local/lib/${name}/${name}-tray" ]; then

@@ -24,7 +24,7 @@ pub fn get_i18n_dir() -> String {
         .into_iter()
         .flatten()
         .find_map(|path| {
-            let translation_file = path.join("fr/LC_MESSAGES/Arch-Update.mo");
+            let translation_file = path.join("fr/LC_MESSAGES/UniOS-Update.mo");
 
             File::open(&translation_file)
                 .ok()
@@ -44,15 +44,15 @@ pub fn init_i18n(i18n_dir: &str) {
         }
     }
 
-    if textdomain("unios-update").is_err() {
+    if textdomain("UniOS-Update").is_err() {
         warn!("Failed to set gettext domain");
     }
 
-    if bindtextdomain("unios-update", i18n_dir).is_err() {
+    if bindtextdomain("UniOS-Update", i18n_dir).is_err() {
         warn!("Failed to bind gettext domain path");
     }
 
-    if bind_textdomain_codeset("unios-update", "UTF-8").is_err() {
+    if bind_textdomain_codeset("UniOS-Update", "UTF-8").is_err() {
         warn!("Failed to set gettext domain codeset");
     }
 }

@@ -6,7 +6,7 @@
 
 # General variables
 name="unios-update"
-_name="UniOS-update"
+_name="UniOS-Update"
 version="2.0"
 option="${1}"
 

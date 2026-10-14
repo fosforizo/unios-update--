@@ -142,17 +142,17 @@ When the systray icon is left-clicked, `unios-update` is run in a terminal windo
 
 From there, just let `UniOS-Update` guide you through the various steps required for a complete and proper update of your system! :smile:
 
-Certain options can be enabled, disabled or modified via the `unios-update.conf` configuration file. See the [arch-update.conf(5) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.conf.5.scd) for more details.
+Certain options can be enabled, disabled or modified via the `unios-update.conf` configuration file. See the [unios-update.conf(5) man page](doc/man/unios-update.conf.5.scd) for more details.
 
 ## Documentation
 
 ### unios-update
 
-See `unios-update --help` and the [arch-update(1) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.1.scd).
+See `unios-update --help` and the [unios-update(1) man page](doc/man/unios-update.1.scd).
 
-### arch-update configuration file
+### unios-update configuration file
 
-See the [arch-update.conf(5) man page](https://raw.githubusercontent.com/Antiz96/arch-update/refs/heads/main/doc/man/arch-update.conf.5.scd).
+See the [unios-update.conf(5) man page](doc/man/unios-update.conf.5.scd).
 
 ## Tips & tricks and troubleshooting
 
@@ -182,4 +182,4 @@ You can contribute [here](https://github.com/open-source-uom/unios-update). We r
 
 ## License
 
-UniOs-Update is licensed under the [GPL-3.0 license](https://github.com/Antiz96/arch-update/blob/main/LICENSE) (or any later version of that license).
+UniOS-Update is licensed under the [GPL-3.0 license](https://github.com/Antiz96/arch-update/blob/main/LICENSE) (or any later version of that license).
